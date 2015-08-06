@@ -188,11 +188,13 @@
         <activity
             android:name=".Test"
             android:label="@string/title_activity_test" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".user.usermes.homepageActivity"
@@ -324,7 +326,7 @@
         <activity
             android:name=".user.contactlist.ContactlistActivity"
             android:label="@string/title_activity_contactlist"
-            android:parentActivityName=".account.login">
+            android:parentActivityName=".account.login" >
         </activity>
         <activity
             android:name=".home.HomeHelpActivity"
@@ -333,6 +335,14 @@
         <activity
             android:name=".home.HomeQueActivity"
             android:label="@string/title_activity_home_que" >
+        </activity>
+        <activity
+            android:name=".CheeseDetailActivity"
+            android:label="@string/title_activity_cheese_detail" >
+        </activity>
+        <activity
+            android:name=".map.ResponseActivity"
+            android:label="@string/title_activity_response" >
         </activity>
     </application>
 

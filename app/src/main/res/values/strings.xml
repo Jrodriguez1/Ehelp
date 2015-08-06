@@ -101,4 +101,9 @@
     <string name="title_activity_home_sos">HomeSOSActivity</string>
     <string name="title_activity_home_help">HomeHelpActivity</string>
     <string name="title_activity_home_que">HomeQueActivity</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="title_activity_cheese_detail">CheeseDetailActivity</string>
+    <string name="title_activity_response">ResponseActivity</string>
+
 </resources>
