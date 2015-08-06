@@ -1,4 +1,4 @@
-package com.ehelp.receive;
+package com.ehelp.map;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ehelp.R;
+import com.ehelp.entity.comment;
 import com.ehelp.home.Home;
-import com.ehelp.map.sendhelp_map;
 import com.ehelp.send.CountNum;
 import com.ehelp.send.SendQuestion;
 import com.ehelp.utils.ActivityCollector;
@@ -37,8 +37,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-@AILayout(R.layout.activity_add_ans)
-public class AddAns extends AIActionBarActivity implements RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener {
+@AILayout(R.layout.activity_response)
+public class ResponseActivity extends AIActionBarActivity implements RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener {
     @AIView(R.id.label_list_sample_rfal)
     private RapidFloatingActionLayout rfaLayout;
     @AIView(R.id.label_list_sample_rfab)
@@ -49,7 +49,7 @@ public class AddAns extends AIActionBarActivity implements RapidFloatingActionCo
     private SharedPreferences sharedPref;
 
     // submit()
-    private int event_id;
+    private comment m_comment;
     private EditText Equestion;
     private EditText Edesc_ques;
     private EditText Eshare_money;
@@ -61,7 +61,7 @@ public class AddAns extends AIActionBarActivity implements RapidFloatingActionCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        event_id = intent.getIntExtra(QuestionDetail.EXTRA_MESSAGE, -1);
+        m_comment = (comment)intent.getSerializableExtra("comment");
         init();
 
         ActivityCollector.getInstance().addActivity(this);
@@ -81,7 +81,7 @@ public class AddAns extends AIActionBarActivity implements RapidFloatingActionCo
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(mToolbar);
         TextView tvv =(TextView) findViewById(R.id.titlefortoolbar);
-        tvv.setText("添加回答");
+        tvv.setText("回复评论");
 
         //set FAB
         fab();
@@ -179,17 +179,18 @@ public class AddAns extends AIActionBarActivity implements RapidFloatingActionCo
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            EditText edit_ans = (EditText)findViewById(R.id.edit_ans);
-            String ans = edit_ans.getText().toString();
+            EditText edit_com = (EditText)findViewById(R.id.edit_ans);
+            String com = edit_com.getText().toString();
             sharedPref = this.getSharedPreferences("user_id", Context.MODE_PRIVATE);
             user_id = sharedPref.getInt("user_id", -1);
             String jsonStrng = "{" +
-                    "\"author_id\":" + user_id +
-                    ",\"event_id\":" + event_id +
-                    ",\"content\":\"" + ans + "\"}";
+                    "\"id\":" + user_id +
+                    ",\"event_id\":" + m_comment.getEvent_id() +
+                    ",\"parent_author\":" + m_comment.getAuthor_id() +
+                    ",\"content\":\"" + com + "\"}";
 
             String message = RequestHandler.sendPostRequest(
-                    "http://120.24.208.130:1501/event/add_ans", jsonStrng);
+                    "http://120.24.208.130:1501/comment/add", jsonStrng);
             if (message == "false") {
                 Toast.makeText(getApplicationContext(), "连接失败，请检查网络是否连接并重试",
                         Toast.LENGTH_SHORT).show();

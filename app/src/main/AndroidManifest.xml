@@ -354,6 +354,10 @@
                     android:scheme="rong" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".map.ResponseActivity"
+            android:label="@string/title_activity_response" >
+        </activity>
     </application>
 
 </manifest>

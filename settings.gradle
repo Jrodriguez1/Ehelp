@@ -1,1 +1,1 @@
-include 'app','library',':IMKit', ':AnimatedCircleLoading'
+include ':IMKit', ':app', ':AnimatedCircleLoading', ':library'

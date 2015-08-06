@@ -90,11 +90,6 @@ public class Home extends AIActionBarActivity implements
         //获取reg id
         //get_rid();
         thread.start();
-        /*SharedPreferences spf = getApplicationContext().getSharedPreferences("user_id", Context.MODE_PRIVATE);
-        int id = spf.getInt("user_id", -1);
-        String s = String.valueOf(id);
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();*/
-
 
         // 收集activity，以便退出登录时集中销毁
         ActivityCollector.getInstance().addActivity(this);
@@ -147,6 +142,7 @@ public class Home extends AIActionBarActivity implements
                 rfaContent
         ).build();
     }
+
     @Override
     public void onRFACItemLabelClick(int position, RFACLabelItem item) {
 //        showToastMessage("clicked label: " + position);
@@ -189,10 +185,10 @@ public class Home extends AIActionBarActivity implements
         TextView tvv =(TextView) findViewById(R.id.titlefortoolbar);
         tvv.setText("Ehelp");
 
-        fragments.add(new HomeMapActivity());
-        fragments.add(new HomeSOSActivity());
         fragments.add(new HomeHelpActivity());
+        fragments.add(new HomeSOSActivity());
         fragments.add(new HomeQueActivity());
+        fragments.add(new HomeMapActivity());
 
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
