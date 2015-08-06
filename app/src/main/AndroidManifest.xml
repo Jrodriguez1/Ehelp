@@ -43,13 +43,14 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
+        android:name=".home.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="xDO3hA5xIb6dwLnHvPlD5yC9" />
+            android:value="mUXipoTtifo0pKN3BqSIgbhb" />
 
         <activity
             android:name=".account.login"
@@ -60,7 +61,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <!--
                 meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -321,7 +321,6 @@
         <activity
             android:name=".home.HomeSOSActivity"
             android:label="@string/title_activity_home_sos" >
-            android:parentActivityName=".account.login">
         </activity>
         <activity
             android:name=".user.contactlist.ContactlistActivity"
@@ -337,8 +336,23 @@
             android:label="@string/title_activity_home_que" >
         </activity>
         <activity
-            android:name=".CheeseDetailActivity"
-            android:label="@string/title_activity_cheese_detail" >
+            android:name=".user.history.EndSosActivity"
+            android:label="@string/title_activity_end_sos"
+            android:parentActivityName=".account.login" >
+        </activity>
+        <activity
+            android:name=".home.ConversationActivity"
+            android:label="@string/title_activity_conversation" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                 <data
+                     android:host="com.ehelp"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".map.ResponseActivity"
